@@ -1,0 +1,57 @@
+<nav class="navbar m-3" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/">
+      <i class="fa fa-apple-core"></i>
+    </a>
+
+    <a
+      role="button"
+      class="navbar-burger"
+      aria-label="menu"
+      aria-expanded="false"
+      data-target="navbarBasicExample"
+    >
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a href="/" class="navbar-item"> Inicio </a>
+
+      <a href="task" class="navbar-item"> Tareas y turnos </a>
+
+      <a href="guest" class="navbar-item"> Gestion de pacientes </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link"> Mas </a>
+
+        <div class="navbar-dropdown">
+          <a class="navbar-item"> Obras sociales </a>
+          <a class="navbar-item"> Otros datos </a>
+          <a class="navbar-item"> Contacto </a>
+          <hr class="navbar-divider" />
+          <a class="navbar-item"> Reportar un problema </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-primary">
+            <strong>Registro</strong>
+          </a>
+          <a class="button is-light"> Ingreso </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="container is-fluid">
+  <div class="notification is-primary is-size-4 py-1 m-0">
+    <strong><%= title %></strong>
+  </div>
+</div>

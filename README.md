@@ -5,10 +5,6 @@
 
 <br>
 
-![](/public/img/Captura%20desde%202022-07-09%2021-06-17.png)
-
-<br>
-
 ### - **_Inicio_**
 
 #### Muestra una tabla con las tareas y turnos del dia, ordenados por hora, con la finalidad de ir tachando las filas completadas o bien reprogramarlas. Cada dia se reinicia la tabla con los turnos registrados en la DB.
@@ -29,41 +25,6 @@
 
 <br>
 
----
-
-<br>
-
-## Distribucion de los archivos -> [ver detalle](odontoweb_list.html)
-
-```
-odonto_web
-├─ README.md
-├─ index.js
-├─ package-lock.json
-├─ package.json
-├─ public
-└─ scr
-   ├─ database
-   ├─ routes
-   │  └─ index.js
-   └─ views
-      ├─ about.ejs
-      ├─ guest.ejs
-      ├─ index.ejs
-      ├─ partials
-      │  ├─ footer.ejs
-      │  ├─ head.ejs
-      │  └─ header.ejs
-      └─ task.ejs
-
-```
-
-<br>
-
----
-
-<br>
-
 ## Tecnologias
 
 - #### Bulma: framework usado para la UI
@@ -74,6 +35,7 @@ odonto_web
 - #### MariaDB: base de datos SQL
 
 ## Ejecucion en desarrollo
+#### Se deben utilizar dos terminales, una para compilar el archivo sass y otra para el server
 
 ```
 npm run css-watch

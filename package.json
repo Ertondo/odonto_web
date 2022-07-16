@@ -4,18 +4,23 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node .",
-    "dev": "nodemon ."
+    "dev": "nodemon .",
+    "css-build": "node-sass --omit-source-map-url public/sass/mystyles.scss public/css/mystyles.css",
+    "css-watch": "npm run css-build -- --watch",
+    "start": "npm run dev"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bulma": "^0.9.4",
     "colors": "^1.4.0",
     "cors": "^2.8.5",
     "ejs": "^3.1.8",
     "express": "^4.18.1",
     "nodemon": "^2.0.19"
+  },
+  "devDependencies": {
+    "bulma": "^0.9.4",
+    "node-sass": "^7.0.1"
   }
 }

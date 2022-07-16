@@ -1,8 +1,8 @@
 const express = require("express");
+const app = express();
 const path = require("path");
 const cors = require("cors");
 const colors = require("colors");
-const app = express();
 const routes = require("./scr/routes");
 
 app.set("port", 3000);

@@ -1,6 +1,7 @@
 # **OdontoWeb**
 
 ## Sistema de gestion de turnos para consultorios odontologicos.
+### En esta rama intento setear la UI predeterminada de Bulma con Sass
 
 <br>
 
@@ -66,6 +67,7 @@ odonto_web
 ## Tecnologias
 
 - #### Bulma: framework usado para la UI
+- #### Sass: lenguaje editor de css
 - #### NodeJS: ejecutor de JS
 - #### Express: servidor de prueba
 - #### Javascript: logica de programa
@@ -74,5 +76,6 @@ odonto_web
 ## Ejecucion en desarrollo
 
 ```
-npm run dev
+npm run css-watch
+npm start
 ```

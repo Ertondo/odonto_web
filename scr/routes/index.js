@@ -1,12 +1,28 @@
 const express = require("express");
 const router = express.Router();
+const meses = new Array(
+  "Enero",
+  "Febrero",
+  "Marzo",
+  "Abril",
+  "Mayo",
+  "Junio",
+  "Julio",
+  "Agosto",
+  "Septiembre",
+  "Octubre",
+  "Noviembre",
+  "Diciembre"
+);
 
-let date = new Date().toDateString();
+let date = new Date();
 
 //Navigations routes
 router.get("/", (req, res) => {
   res.render("index", {
-    title: `Que tengo para hoy? - ${new Date().toDateString()}`,
+    title: `Que tengo para hoy? - ${date.getDate()} de ${
+      meses[date.getMonth()]
+    } de ${date.getFullYear()}`,
   });
 });
 

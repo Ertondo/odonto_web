@@ -9,76 +9,123 @@
     <!-- ******************************************************************* -->
     <section class="section py-3 mx-2 mt-1 add_guest">
       <!-- ******************************************************************* -->
-      <div class="columns">
-        <div class="column is-2">
-          <div class="control">
-            <input class="input" type="text" placeholder="Documento" />
+      <form name="formGuestData" id="formGuestData" action="" method="get">
+        <div class="columns">
+          <div class="column is-2">
+            <div class="control">
+              <input
+                name="dni"
+                class="input"
+                type="number"
+                placeholder="Documento"
+                required
+              />
+            </div>
+          </div>
+          <div class="column is-3">
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                name="name"
+                placeholder="Nombre completo"
+                required
+              />
+            </div>
+          </div>
+          <div class="column is-4">
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                name="street"
+                placeholder="Direccion"
+              />
+            </div>
+          </div>
+          <div class="column is-3">
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                name="location"
+                placeholder="Localidad"
+              />
+            </div>
           </div>
         </div>
-        <div class="column is-3">
-          <div class="control">
-            <input class="input" type="text" placeholder="Nombre completo" />
+        <!-- ******************************************************************* -->
+        <div class="columns">
+          <div class="column is-5">
+            <p class="control has-icons-left">
+              <input
+                class="input"
+                type="email"
+                name="email"
+                placeholder="nombre@email.com"
+              />
+              <span class="icon is-small is-left">
+                <i class="fa fa-envelope"></i>
+              </span>
+            </p>
+          </div>
+          <div class="column is-2">
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                name="fechaNac"
+                placeholder="Fecha de nacimiento"
+              />
+            </div>
+          </div>
+          <div class="column is-3">
+            <div class="control">
+              <input class="input" type="text" placeholder="otro dato" />
+            </div>
+          </div>
+          <!-- ************************************************************************** -->
+          <div class="column is-3">
+            <div class="select is-info">
+              <select name="os">
+                <optgroup label="Seleccione obra social">
+                  <option value="Particular">Particular</option>
+                  <option value="OSMEDICA">OSMEDICA</option>
+                  <option value="OSEP">OSEP</option>
+                  <option value="OSDE">OSDE</option>
+                  <option value="SANCOR">SANCOR</option>
+                </optgroup>
+              </select>
+            </div>
           </div>
         </div>
-        <div class="column is-4">
-          <div class="control">
-            <input class="input" type="text" placeholder="Direccion" />
+        <div class="columns">
+          <div class="column is-8"></div>
+          <div class="column is-4">
+            <div class="buttons">
+              <input
+                type="submit"
+                class="button is-info"
+                id="btnSaveGuest"
+                value="Guardar"
+              />
+              <input
+                type="submit"
+                class="button is-info"
+                id="cancel"
+                value="Cancelar"
+              />
+              <input
+                type="submit"
+                class="button is-warning"
+                id="erase"
+                value="Borrar"
+                disabled="true"
+              />
+            </div>
           </div>
         </div>
-        <div class="column is-3">
-          <div class="control">
-            <input class="input" type="text" placeholder="Localidad" />
-          </div>
-        </div>
-      </div>
-      <!-- ******************************************************************* -->
-      <div class="columns">
-        <div class="column is-5">
-          <p class="control has-icons-left">
-            <input class="input" type="email" placeholder="nombre@email.com" />
-            <span class="icon is-small is-left">
-              <i class="fas fa-envelope"></i>
-            </span>
-          </p>
-        </div>
-        <div class="column is-2">
-          <div class="control">
-            <input
-              class="input"
-              type="text"
-              placeholder="Fecha de nacimiento"
-            />
-          </div>
-        </div>
-        <div class="column is-3">
-          <div class="control">
-            <input class="input" type="text" placeholder="otro dato" />
-          </div>
-        </div>
-        <!-- ************************************************************************** -->
-        <div class="column is-3">
-          <div class="select">
-            <select>
-              <option>Seleccione obra social</option>
-              <option>Particular</option>
-              <option>OSMEDICA</option>
-              <option>OSEP</option>
-              <option>OSDE</option>
-              <option>SANCOR</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div class="columns">
-        <div class="column is-8"></div>
-        <div class="column is-4">
-          <div class="buttons">
-            <button class="button is-info">Guardar</button>
-            <button class="button is-info">Cancelar</button>
-            <button class="button is-info">Borrar</button>
-          </div>
-        </div>
-      </div>
+      </form>
     </section>
 
     <div class="container is-fluid">
@@ -92,50 +139,24 @@
       <!-- ************************************************************************************ -->
       <div class="columns">
         <div class="column is-12">
-          <table class="table is-striped is-hoverable is-fullwidth">
+          <table
+            class="table is-striped is-hoverable is-fullwidth"
+            id="dataGuestTable"
+          >
             <thead class="is-info">
               <tr>
-                <th title="Position">Editar</th>
-                <th title="Played">Documento</th>
-                <th title="Won">Nombre</th>
-                <th title="Drawn">Direccion</th>
-                <th title="Lost">Localidad</th>
-                <th title="Goals for">Email</th>
-                <th title="Goals against">Nacimiento</th>
-                <th title="Points">Obra social</th>
+                <th title="Nro de documento">Documento</th>
+                <th title="Nombre completo">Nombre</th>
+                <th title="Direccion">Direccion</th>
+                <th title="Localidad">Localidad</th>
+                <th title="Email">Email</th>
+                <th title="Obra social">Obra social</th>
+                <th title="Editar"></th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th>X</th>
-                <td>25173444</td>
-                <td>Gustavo Armitano</td>
-                <td>San Martin 788</td>
-                <td>Catamarca</td>
-                <td>garmitano@gmail.com</td>
-                <td>08/11/1976</td>
-                <td>OSMEDICA</td>
-              </tr>
-              <tr>
-                <th>X</th>
-                <td>25173444</td>
-                <td>Gustavo Armitano</td>
-                <td>San Martin 788</td>
-                <td>Catamarca</td>
-                <td>garmitano@gmail.com</td>
-                <td>08/11/1976</td>
-                <td>OSMEDICA</td>
-              </tr>
-              <tr>
-                <th>X</th>
-                <td>25173444</td>
-                <td>Gustavo Armitano</td>
-                <td>San Martin 788</td>
-                <td>Catamarca</td>
-                <td>garmitano@gmail.com</td>
-                <td>08/11/1976</td>
-                <td>OSMEDICA</td>
-              </tr>
+              <!-- TODO si saco el tr no se colocan las filas en el tbody -->
+              <tr></tr>
             </tbody>
           </table>
         </div>
@@ -143,5 +164,7 @@
     </section>
 
     <%- include('partials/footer') %>
+    <!-- <script src="./add_guest.js"></script> -->
+    <script src="scripts/add_guest.js"></script>
   </body>
 </html>

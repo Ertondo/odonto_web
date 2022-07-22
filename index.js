@@ -3,10 +3,10 @@ const path = require("path");
 const cors = require("cors");
 const colors = require("colors");
 const app = express();
-const routes = require("./scr/routes");
+const routes = require("./backend/routes");
 
 app.set("port", 3000);
-app.set("views", path.join(__dirname, "./scr/views"));
+app.set("views", path.join(__dirname, "./frontend/views"));
 app.set("view engine", "ejs");
 
 app.use("/", routes);

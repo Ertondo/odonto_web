@@ -1,25 +1,53 @@
 const formElement = document.getElementById("formGuestData");
+let guestDataObject = new Object();
 // const btnSaveGuest = document.querySelector("btnSaveGuest");
 
 formElement.addEventListener("submit", (e) => {
-  e.preventDefault();
   let formGuestData = new FormData(formElement);
   let guestDataArray = [];
-  if (e.submitter.id === "erase") {
-    console.log("press Cancel");
-  } else {
+
+  if (e.submitter.id === "btnSaveGuest") {
+    //Save fields in an array
     guestDataArray.push(formGuestData.get("dni"));
     guestDataArray.push(formGuestData.get("name"));
     guestDataArray.push(formGuestData.get("street"));
     guestDataArray.push(formGuestData.get("location"));
     guestDataArray.push(formGuestData.get("email"));
     guestDataArray.push(formGuestData.get("os"));
+    //Save fields in an object
+    guestDataObject.dni = formGuestData.get("dni");
+    guestDataObject.name = formGuestData.get("name");
+    guestDataObject.street = formGuestData.get("street");
+    guestDataObject.location = formGuestData.get("location");
+    guestDataObject.email = formGuestData.get("email");
+    guestDataObject.birthday = formGuestData.get("birthday");
+    guestDataObject.os = formGuestData.get("os");
 
-    insertRowInTable(guestDataArray);
+    insertRowInTable(guestDataArray, guestDataObject);
+
+    e.preventDefault();
+    //Mando el objeto via post al backend usando fecth
+    console.log(JSON.stringify(guestDataObject));
+    fetch("http://localhost:3000/newGuestDatatoDB", {
+      method: "POST", // or 'PUT'
+      body: JSON.stringify(guestDataObject), // data can be `string` or {object}!
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .catch((error) => console.error("Error:", error))
+      .then((response) => console.log("Success:", response));
+  } else if (e.submitter.id === "btnCleanData") {
+    formGuestData.reset();
+  } else if (e.submitter.id === "btnDeleteGuest") {
+    alert("btnDeleteGuestW");
+    formGuestData.reset();
   }
 });
 
-function insertRowInTable(guestDataArray) {
+//TODO cambiar el array por el object para cargar los datos en la tabla
+function insertRowInTable(guestDataArray, guestDataObject) {
   const dataGuestTable = document.getElementById("dataGuestTable");
   const dataGuestTableNewRow = dataGuestTable.insertRow(-1);
   const btnEditGuestData = document.createElement("button");
@@ -36,8 +64,8 @@ function insertRowInTable(guestDataArray) {
   dataGuestTableNewCell.appendChild(btnEditGuestData);
 
   btnEditGuestData.addEventListener("click", (e) => {
-    console.log(e.target.parentNode.parentNode.remove());
+    e.target.parentNode.parentNode.remove();
   });
-
+  console.log(guestDataObject);
   formGuestData.reset();
 }

@@ -36,24 +36,48 @@
 
 ```
 odonto_web
-├─ README.md
-├─ index.js
-├─ package-lock.json
-├─ package.json
-├─ public
-└─ scr
-   ├─ database
-   ├─ routes
-   │  └─ index.js
-   └─ views
-      ├─ about.ejs
-      ├─ guest.ejs
-      ├─ index.ejs
-      ├─ partials
-      │  ├─ footer.ejs
-      │  ├─ head.ejs
-      │  └─ header.ejs
-      └─ task.ejs
+├── backend
+│   ├── apiServices
+│   │   ├── guestServices
+│   │   │   ├── controller.js
+│   │   │   ├── model.js
+│   │   │   └── routes.js
+│   │   └── taskServices
+│   │       ├── controller.js
+│   │       ├── model.js
+│   │       └── routes.js
+│   ├── config
+│   │   └── default.js
+│   └── routes
+│       └── index.js
+├── frontend
+│   ├── database
+│   │   └── conn.js
+│   └── views
+│       ├── about.ejs
+│       ├── guest.ejs
+│       ├── index.ejs
+│       ├── partials
+│       │   ├── footer.ejs
+│       │   ├── head.ejs
+│       │   └── header.ejs
+│       └── task.ejs
+├── index.js
+├── package.json
+├── package-lock.json
+├── public
+│   ├── css
+│   │   └── mystyles.css
+│   ├── img
+│   ├── odontoweb.html
+│   └── scripts
+│       ├── add_guest.js
+│       ├── add_task.js
+│       ├── task_today.js
+│       └── utils
+│           └── getCurrentDate.js
+└── README.md
+
 
 ```
 

@@ -2,6 +2,123 @@
 <html lang="en">
   <%- include('partials/head') %>
   <body>
+<<<<<<< HEAD
     <%- include('partials/header') %> <%- include('partials/footer') %>
+=======
+    <%- include('partials/header') %>
+    <!-- ******************************************************************* -->
+    <!-- Form to add new task -->
+    <!-- ******************************************************************* -->
+    <section class="section py-3 mx-2 mt-1 add_task">
+      <!-- ******************************************************************* -->
+      <form name="formTasktData" id="formTasktData" action="" method="get">
+        <div class="columns">
+          <div class="column is-2">
+            <div class="control">
+              <p>
+                Tipo de evento:<br />
+                <input type="radio" name="event_type" value="turn" /> Turno
+                <input type="radio" name="event_type" value="task" /> Tarea
+              </p>
+            </div>
+          </div>
+          <div class="column is-2">
+            <div class="control">
+              <input
+                name="hour"
+                class="input"
+                type="time"
+                placeholder="Hora programada"
+                required
+              />
+            </div>
+          </div>
+          <div class="column is-6">
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                name="detail"
+                placeholder="Detalle del evento"
+                required
+              />
+            </div>
+          </div>
+          <div class="column is-2">
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                name="extra_detail"
+                placeholder="Informacion adicional"
+              />
+            </div>
+          </div>
+        </div>
+        <!-- ******************************************************************* -->
+        <div class="columns">
+          <div class="column is-8"></div>
+          <div class="column is-6">
+            <div class="buttons">
+              <input
+                type="submit"
+                class="button is-info"
+                id="btnSaveTask"
+                value="Agendar evento"
+              />
+              <input
+                type="submit"
+                class="button is-info"
+                id="btnCleanData"
+                value="Limpiar campos"
+              />
+              <input
+                type="submit"
+                class="button is-warning"
+                id="btnDeleteTask"
+                value="Borrar Evento"
+                disabled="true"
+              />
+            </div>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <div class="container is-fluid">
+      <div class="notification is-primary is-size-4 py-1">
+        <strong>Consulta del registro de pacientes</strong>
+      </div>
+    </div>
+    <section class="section py-3 mx-2 mt-1 add_guest">
+      <!-- ************************************************************************************ -->
+      <!-- TABLA DE BASE DE DATOS -->
+      <!-- ************************************************************************************ -->
+      <div class="columns">
+        <div class="column is-12">
+          <table
+            class="table is-striped is-hoverable is-fullwidth"
+            id="dataGuestTable"
+          >
+            <thead class="is-info">
+              <tr>
+                <th title="Tipo de evento">Tipo de evento</th>
+                <th title="Hora programada">Hora</th>
+                <th title="Detalle del evento">Detalle</th>
+                <th title="Informacion adicional">Extra</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- TODO si saco el tr no se colocan las filas en el tbody -->
+              <tr></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <%- include('partials/footer') %>
+    <script src="scripts/add_task.js"></script>
+>>>>>>> ff8d20e (created backend and frontend folders and i beginded with comunication betwen it to save data in db)
   </body>
 </html>

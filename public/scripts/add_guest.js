@@ -28,6 +28,7 @@ formElement.addEventListener("submit", (e) => {
     e.preventDefault();
     //Mando el objeto via post al backend usando fecth
     console.log(JSON.stringify(guestDataObject));
+<<<<<<< HEAD
     fetch("http://localhost:3000/newGuestDatatoDB", {
       method: "POST", // or 'PUT'
       body: JSON.stringify(guestDataObject), // data can be `string` or {object}!
@@ -38,6 +39,12 @@ formElement.addEventListener("submit", (e) => {
       .then((res) => res.json())
       .catch((error) => console.error("Error:", error))
       .then((response) => console.log("Success:", response));
+=======
+
+    sendDataToBackend();
+
+    //---------------------------------------
+>>>>>>> ff8d20e (created backend and frontend folders and i beginded with comunication betwen it to save data in db)
   } else if (e.submitter.id === "btnCleanData") {
     formGuestData.reset();
   } else if (e.submitter.id === "btnDeleteGuest") {
@@ -68,4 +75,23 @@ function insertRowInTable(guestDataArray, guestDataObject) {
   });
   console.log(guestDataObject);
   formGuestData.reset();
+}
+
+//Envio los datos del paciente al backend
+function sendDataToBackend() {
+  //Guardo las opciones del fetch, defino la url luego las opciones y armo la request para el fetch
+  const url = "http://localhost:4000/api/newGuestDatatoDB";
+  const postOptions = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(guestDataObject),
+  };
+  const requestNewGuest = new Request(url, postOptions);
+  //
+  const resNewGuest = fetch(requestNewGuest)
+    .then((res) => res.json())
+    .catch((error) => console.error("Error:", error))
+    .then((response) => console.log("Success:", response));
 }

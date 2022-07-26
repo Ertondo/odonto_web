@@ -7,7 +7,7 @@ const bodyParser = require("body-parser");
 require("dotenv").config();
 
 //Defino las vistas de la pagina y el motor de plantillas EJS
-app.set("views", path.join(__dirname, "./frontend/views"));
+app.set("views", path.join(__dirname, "../../frontend/views"));
 app.set("view engine", "ejs");
 
 app.use(cors());
@@ -19,11 +19,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(require("../routes/index.routes"));
 
 //Defino una carpeta con archivos de uso publico
-app.use(express.static(path.join(__dirname, "/public")));
+app.use(express.static(path.join(__dirname, "../../public")));
 
 //Si intento ingresar a una direccion incorrecta...404
 app.use((req, res) => {
-  res.sendFile(path.join(__dirname, "/public/404.html"));
+  res.sendFile(path.join(__dirname, "../../public/404.html"));
 });
 
 //Exporto app para que funcione el servidor

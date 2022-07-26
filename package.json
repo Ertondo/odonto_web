@@ -19,14 +19,10 @@
     "ejs": "^3.1.8",
     "express": "^4.18.1",
     "mariadb": "^3.0.0",
-<<<<<<< HEAD
-    "moment": "^2.29.4",
-=======
     "mysql": "^2.18.1"
   },
   "devDependencies": {
     "colors": "^1.4.0",
->>>>>>> ff8d20e (created backend and frontend folders and i beginded with comunication betwen it to save data in db)
     "nodemon": "^2.0.19"
   }
 }

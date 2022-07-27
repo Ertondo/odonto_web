@@ -12,7 +12,7 @@ CREATE TABLE guest (
 
 /* Inserto datos en la Tabla para realizar las pruebas */
 INSERT INTO guest(dni, name, street, location, birtday, email,os)
-  VALUES ('3943125', 'Roberto Decima', 'San martin 788','Catamarca','05/02/1976','joaquin.decima@gmail.com', 'OSMEDICA'),
+  VALUES ('23828733', 'Carol Sandra Cecilia', 'San martin 788','Cordoba','05/02/1974','cecilia.decima@gmail.com', 'OSDE'),
         ('3932543125', 'Joaquin Decima', 'Rivadavia','Catamarca','05/02/1976','joaquin.decima@gmail.com', 'OSMEDICA'),
         ('25183621', 'Rodolfo Alfonso', 'Obispo Salguero 783', 'Cordoba','05/02/1976','joaquin.decima@gmail.com', 'OSMEDICA'),
         ('23562346', 'Pedro Perez', 'San martin 1102','Salta','05/02/1976','joaquin.decima@gmail.com', 'OSMEDICA');

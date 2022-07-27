@@ -1,4 +1,5 @@
 const controllers = {};
+const pool = require("../database/dbConnection");
 
 const {
   getCurrentDate,
@@ -32,15 +33,15 @@ controllers.task = (req, res) => {
 
 //Administracion de usuarios
 //Muestra el paciente actual en "http://localhost:4000/api/newGuestDatatoDB"
-controllers.getNewGuestData = (req, res) => {
-  console.log("get...");
-  res.send(JSON.stringify(newGuestData));
+controllers.getNewGuestData = async (req, res) => {
+  const data = await pool.query("SELECT * FROM guest");
+  res.send(JSON.stringify(data));
 };
 
 //Solicito nuevo paciente para enviar a la DB a "http://localhost:4000/api/newGuestDatatoDB"
 controllers.postNewGuestData = (req, res) => {
   console.log("me mando un JSON");
-  console.log(req.body);
+  // console.log(req.body);
   newGuestData = req.body;
   res.send(JSON.stringify("LLego bala"));
 };

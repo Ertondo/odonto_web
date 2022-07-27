@@ -1,6 +1,32 @@
 const formElement = document.getElementById("formGuestData");
 let guestDataObject = new Object();
-// const btnSaveGuest = document.querySelector("btnSaveGuest");
+let datoArray = [];
+//Funcion de carga de la tabla de paciente
+//Toma los datos desde la api
+//TODO hacer que se cargue segun un boton de busqueda
+
+const showGuestInTable = async () => {
+  let dataGuestArray = await fetch(
+    "http://localhost:4000/api/newGuestDatatoDB"
+  );
+  let datos = await dataGuestArray.json();
+
+  datos.forEach((element, i) => {
+    datoArray[i] = [
+      element.dni,
+      element.name,
+      element.street,
+      element.location,
+      element.email,
+      element.os,
+    ];
+  });
+  datoArray.forEach((element) => {
+    insertRowInTable(element);
+  });
+};
+
+showGuestInTable();
 
 formElement.addEventListener("submit", (e) => {
   let formGuestData = new FormData(formElement);
@@ -14,6 +40,8 @@ formElement.addEventListener("submit", (e) => {
     guestDataArray.push(formGuestData.get("location"));
     guestDataArray.push(formGuestData.get("email"));
     guestDataArray.push(formGuestData.get("os"));
+
+    console.log(guestDataArray);
     //Save fields in an object
     guestDataObject.dni = formGuestData.get("dni");
     guestDataObject.name = formGuestData.get("name");
@@ -23,7 +51,7 @@ formElement.addEventListener("submit", (e) => {
     guestDataObject.birthday = formGuestData.get("birthday");
     guestDataObject.os = formGuestData.get("os");
 
-    insertRowInTable(guestDataArray, guestDataObject);
+    insertRowInTable(guestDataArray);
 
     e.preventDefault();
     //Mando el objeto via post al backend usando fecth
@@ -41,7 +69,7 @@ formElement.addEventListener("submit", (e) => {
 });
 
 //TODO cambiar el array por el object para cargar los datos en la tabla
-function insertRowInTable(guestDataArray, guestDataObject) {
+function insertRowInTable(guestDataArray) {
   const dataGuestTable = document.getElementById("dataGuestTable");
   const dataGuestTableNewRow = dataGuestTable.insertRow(-1);
   const btnEditGuestData = document.createElement("button");
@@ -60,7 +88,7 @@ function insertRowInTable(guestDataArray, guestDataObject) {
   btnEditGuestData.addEventListener("click", (e) => {
     e.target.parentNode.parentNode.remove();
   });
-  console.log(guestDataObject);
+  //console.log(guestDataObject);
   formGuestData.reset();
 }
 

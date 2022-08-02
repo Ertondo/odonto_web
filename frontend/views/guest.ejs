@@ -100,8 +100,7 @@
           </div>
         </div>
         <div class="columns">
-          <div class="column is-8"></div>
-          <div class="column is-6">
+          <div class="column is-12">
             <div class="buttons">
               <input
                 type="submit"
@@ -128,15 +127,43 @@
       </form>
     </section>
 
-    <div class="container is-fluid">
-      <div class="notification is-primary is-size-4 py-1">
-        <strong>Consulta del registro de pacientes</strong>
+    <!-- TODO poner el icono de buscar a la derecha -->
+    <div class="columns">
+      <div class="column is-8">
+        <div class="container is-fluid">
+          <div class="notification is-primary is-size-4 py-1">
+            <strong>Consulta del registro de pacientes</strong>
+          </div>
+        </div>
+      </div>
+      <div class="column is-1">
+        <p class="control has-icons-left">
+          <input
+            type="submit"
+            class="button is-info"
+            id="btnFindGuest"
+            value=" "
+          />
+          <span class="icon is-large is-left">
+            <i class="fa fa-search"></i>
+          </span>
+        </p>
+      </div>
+      <div class="column is-4">
+        <div class="control">
+          <input
+            class="input"
+            id="findBySurname"
+            type="text"
+            placeholder="Buscar por apellido"
+          />
+        </div>
       </div>
     </div>
+    <!-- ************************************************************************************ -->
+    <!-- TABLA DE BASE DE DATOS -->
+    <!-- ************************************************************************************ -->
     <section class="section py-3 mx-2 mt-1 add_guest">
-      <!-- ************************************************************************************ -->
-      <!-- TABLA DE BASE DE DATOS -->
-      <!-- ************************************************************************************ -->
       <div class="columns">
         <div class="column is-12">
           <table

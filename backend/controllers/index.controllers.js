@@ -1,5 +1,6 @@
 const controllers = {};
 const pool = require("../database/dbConnection");
+const { insertIntoNewGuest } = require("../database/querys.js");
 
 const {
   getCurrentDate,
@@ -36,14 +37,21 @@ controllers.task = (req, res) => {
 controllers.getNewGuestData = async (req, res) => {
   const data = await pool.query("SELECT * FROM guest");
   res.send(JSON.stringify(data));
+  console.log("select OK");
 };
 
 //Solicito nuevo paciente para enviar a la DB a "http://localhost:4000/api/newGuestDatatoDB"
-controllers.postNewGuestData = (req, res) => {
+controllers.postNewGuestData = async (req, res) => {
   console.log("me mando un JSON");
-  // console.log(req.body);
   newGuestData = req.body;
-  res.send(JSON.stringify("LLego bala"));
+  console.log(newGuestData);
+  const result = await insertIntoNewGuest(newGuestData);
+  console.log(result);
+  if (result) {
+    res.status(201);
+  } else {
+    res.send({ status: "ERROR", data: result });
+  }
 };
 
 //Administracion de eventos

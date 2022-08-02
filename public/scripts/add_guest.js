@@ -1,33 +1,45 @@
 const formElement = document.getElementById("formGuestData");
+const btnFindGuest = document.querySelector("#btnFindGuest");
+const findBySurname = document.querySelector("#findBySurname");
+
 let guestDataObject = new Object();
 let datoArray = [];
-//Funcion de carga de la tabla de paciente
-//Toma los datos desde la api
-//TODO hacer que se cargue segun un boton de busqueda
 
-const showGuestInTable = async () => {
-  let dataGuestArray = await fetch(
-    "http://localhost:4000/api/newGuestDatatoDB"
-  );
-  let datos = await dataGuestArray.json();
+//IF PRESS FIND BUTTON
+//Trae todos los campos y los guarda en un array de arrays
+btnFindGuest.addEventListener("click", (e) => {
+  const showGuestInTable = async () => {
+    try {
+      let response = await fetch("http://localhost:4000/api/newGuestDatatoDB");
 
-  datos.forEach((element, i) => {
-    datoArray[i] = [
-      element.dni,
-      element.name,
-      element.street,
-      element.location,
-      element.email,
-      element.os,
-    ];
-  });
-  datoArray.forEach((element) => {
-    insertRowInTable(element);
-  });
-};
+      let datos = await response.json();
+      console.log(datos);
+      datos.forEach((element, i) => {
+        datoArray[i] = [
+          element.dni,
+          element.name,
+          element.street,
+          element.location,
+          element.email,
+          element.os,
+        ];
+      });
+    } catch {
+      console.log("error");
+    }
+    //TODO cada ves que busco algo tengo que limpiar la tabla
+    //Filtra por nombre segun el input y lo que muestra en la tabla
+    datoArray.forEach((element) => {
+      if (element[1].includes(findBySurname.value.toUpperCase())) {
+        insertRowInTable(element);
+      }
+    });
+  };
+  //Llama a la funcion con async
+  showGuestInTable();
+});
 
-showGuestInTable();
-
+//LISTEN SAVE/CANCEL/ERASE BUTTONS
 formElement.addEventListener("submit", (e) => {
   let formGuestData = new FormData(formElement);
   let guestDataArray = [];
@@ -41,7 +53,6 @@ formElement.addEventListener("submit", (e) => {
     guestDataArray.push(formGuestData.get("email"));
     guestDataArray.push(formGuestData.get("os"));
 
-    console.log(guestDataArray);
     //Save fields in an object
     guestDataObject.dni = formGuestData.get("dni");
     guestDataObject.name = formGuestData.get("name");
@@ -51,17 +62,18 @@ formElement.addEventListener("submit", (e) => {
     guestDataObject.birthday = formGuestData.get("birthday");
     guestDataObject.os = formGuestData.get("os");
 
+    //Si guardo un paciente, lo muestro al final de la tabla
     insertRowInTable(guestDataArray);
 
     e.preventDefault();
     //Mando el objeto via post al backend usando fecth
-    console.log(JSON.stringify(guestDataObject));
-
     sendDataToBackend();
 
     //---------------------------------------
+  } else if (e.submitter.id === "btnFindGuest") {
+    console.log("buscar...");
   } else if (e.submitter.id === "btnCleanData") {
-    formGuestData.reset();
+    //llamar a funcion que haga input.value=""
   } else if (e.submitter.id === "btnDeleteGuest") {
     alert("btnDeleteGuestW");
     formGuestData.reset();
@@ -86,15 +98,16 @@ function insertRowInTable(guestDataArray) {
   dataGuestTableNewCell.appendChild(btnEditGuestData);
 
   btnEditGuestData.addEventListener("click", (e) => {
-    e.target.parentNode.parentNode.remove();
+    // e.target.parentNode.parentNode.remove();
+    console.log(e.target.parentNode.parentNode);
   });
-  //console.log(guestDataObject);
+
   formGuestData.reset();
 }
 
-//Envio los datos del paciente al backend
-function sendDataToBackend() {
-  //Guardo las opciones del fetch, defino la url luego las opciones y armo la request para el fetch
+//Envio los datos del paciente al backend usando async/await
+async function sendDataToBackend() {
+  //Guardo las opciones del fetch, defino la url y hago el POST
   const url = "http://localhost:4000/api/newGuestDatatoDB";
   const postOptions = {
     method: "POST",
@@ -103,10 +116,20 @@ function sendDataToBackend() {
     },
     body: JSON.stringify(guestDataObject),
   };
-  const requestNewGuest = new Request(url, postOptions);
-  //
-  const resNewGuest = fetch(requestNewGuest)
-    .then((res) => res.json())
-    .catch((error) => console.error("Error:", error))
-    .then((response) => console.log("Success:", response));
+
+  //Envio el nuevo paciente a la DB
+  try {
+    const resNewGuest = await fetch(url, postOptions);
+    await resNewGuest;
+    console.log(resNewGuest.status);
+  } catch {
+    console.log("ERROR POST");
+  }
 }
+
+//FETCH POST CON PROMESAS
+//const requestNewGuest = new Request(url, postOptions);
+// const resNewGuest = fetch(requestNewGuest) //hago el post segun los datos de la request
+//   .then((res) => res.json()) //si todo va bien...convierte a Json
+//   .then((response) => console.log("Success:", response)) //y si sigue todo bien responde
+//   .catch((error) => console.error("Error:", error)); //sino manda error

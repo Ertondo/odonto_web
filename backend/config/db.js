@@ -2,9 +2,9 @@
 
 module.exports = {
   dbGuest: {
-    host: "localhost",
-    user: "gustavo",
-    password: "ertondo23254346",
+    host: process.env.HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
     database: "odontoweb",
   },
 };

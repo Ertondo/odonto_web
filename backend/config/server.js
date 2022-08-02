@@ -10,6 +10,7 @@ require("dotenv").config();
 app.set("views", path.join(__dirname, "../../frontend/views"));
 app.set("view engine", "ejs");
 
+//Midlewares
 app.use(cors());
 //Body parser sirve para parsear el req.body y poder recibir json
 app.use(bodyParser.json({ type: "*/*" }));

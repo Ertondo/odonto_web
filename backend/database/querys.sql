@@ -10,12 +10,14 @@ CREATE TABLE guest (
   os VARCHAR(100)
 );
 
-/* Inserto datos en la Tabla para realizar las pruebas */
-INSERT INTO guest(dni, name, street, location, birtday, email,os)
-  VALUES ('23828733', 'Carol Sandra Cecilia', 'San martin 788','Cordoba','05/02/1974','cecilia.decima@gmail.com', 'OSDE'),
-        ('3932543125', 'Joaquin Decima', 'Rivadavia','Catamarca','05/02/1976','joaquin.decima@gmail.com', 'OSMEDICA'),
-        ('25183621', 'Rodolfo Alfonso', 'Obispo Salguero 783', 'Cordoba','05/02/1976','joaquin.decima@gmail.com', 'OSMEDICA'),
-        ('23562346', 'Pedro Perez', 'San martin 1102','Salta','05/02/1976','joaquin.decima@gmail.com', 'OSMEDICA');
+/* Inserto datos en la Tabla para realizar las pruebas */    
+INSERT INTO guest (dni,name,street,location,email,birthday,os) VALUES ('${
+      data.dni
+    }', '${data.name.toUpperCase()}', '${data.street.toUpperCase()}', '${data.location.toUpperCase()}', '${data.email.toUpperCase()}', '${data.birthday.toUpperCase()}', '${data.os.toUpperCase()}')
+  );
 
 /* Muestro los datos */
 SELECT * FROM usuarios;
+
+-- DELETE
+DELETE FROM `guest` WHERE `dni`=3943125
